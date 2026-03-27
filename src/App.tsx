@@ -10,7 +10,7 @@ function App() {
     <div className="app-shell">
       <header className="topbar">
         <Link to="/competitions" className="topbar__brand" aria-label="На главную">
-          FIFA
+          <img src="/fifa-logo.png" alt="FIFA" />
         </Link>
 
         <nav className="topbar__nav" aria-label="Основная навигация">

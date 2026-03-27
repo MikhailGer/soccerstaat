@@ -68,3 +68,23 @@ export function getVisibleScores(match: Match) {
 
   return scores
 }
+
+export function formatMatchScoreSummary(match: Match) {
+  const fullTime = hasVisibleScore(match.score.fullTime)
+    ? `${match.score.fullTime.home}:${match.score.fullTime.away}`
+    : null
+  const extraTime = hasVisibleScore(match.score.extraTime)
+    ? `(${match.score.extraTime!.home}:${match.score.extraTime!.away})`
+    : null
+  const penalties = hasVisibleScore(match.score.penalties)
+    ? `(${match.score.penalties!.home}:${match.score.penalties!.away})`
+    : null
+
+  const parts = [fullTime, extraTime, penalties].filter(Boolean)
+
+  if (parts.length === 0) {
+    return '—'
+  }
+
+  return parts.join(' ')
+}

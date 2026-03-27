@@ -25,7 +25,7 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
               <span className="breadcrumbs__current">{item.label}</span>
             )}
 
-            {!isLastItem ? <span className="breadcrumbs__separator">/</span> : null}
+            {!isLastItem ? <span className="breadcrumbs__separator">&gt;</span> : null}
           </span>
         )
       })}

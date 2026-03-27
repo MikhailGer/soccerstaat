@@ -87,30 +87,18 @@ export function TeamMatchesPage() {
   const teamName = teamQuery.data?.name ?? 'Календарь команды'
 
   return (
-    <section className="page">
+    <section className="page page--calendar">
       <Breadcrumbs
         items={[{ label: 'Команды', to: '/teams' }, { label: teamName }]}
       />
 
-      <div className="page__header page__header--compact">
-        <span className="page__eyebrow">Раздел 4</span>
-        <h1>{teamName}</h1>
-        <p>
-          Матчи команды с фильтрацией по датам, переводом времени в локальную
-          таймзону пользователя и отображением статусов на русском.
-        </p>
-      </div>
-
-      <div className="page__toolbar page__toolbar--stacked">
+      <div className="page__toolbar page__toolbar--calendar">
         <DateRangeFilter
           key={`${dateFrom ?? 'empty'}-${dateTo ?? 'empty'}`}
           appliedDateFrom={dateFrom}
           appliedDateTo={dateTo}
           onApply={updateDateRange}
         />
-        <p className="page__meta">
-          Матчей: <strong>{teamMatchesQuery.data?.total ?? 0}</strong>
-        </p>
       </div>
 
       {teamQuery.isError ? (
@@ -147,7 +135,7 @@ export function TeamMatchesPage() {
       !teamMatchesQuery.isError &&
       visibleMatches.length > 0 ? (
         <>
-          <MatchesList matches={visibleMatches} showCompetition />
+          <MatchesList matches={visibleMatches} />
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}

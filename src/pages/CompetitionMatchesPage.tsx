@@ -84,7 +84,7 @@ export function CompetitionMatchesPage() {
   const competitionName = competitionMatchesQuery.data?.competition.name ?? 'Календарь лиги'
 
   return (
-    <section className="page">
+    <section className="page page--calendar">
       <Breadcrumbs
         items={[
           { label: 'Лиги', to: '/competitions' },
@@ -92,25 +92,13 @@ export function CompetitionMatchesPage() {
         ]}
       />
 
-      <div className="page__header page__header--compact">
-        <span className="page__eyebrow">Раздел 3</span>
-        <h1>{competitionName}</h1>
-        <p>
-          Календарь матчей выбранной лиги с фильтрацией по диапазону дат и
-          локальным временем пользователя.
-        </p>
-      </div>
-
-      <div className="page__toolbar page__toolbar--stacked">
+      <div className="page__toolbar page__toolbar--calendar">
         <DateRangeFilter
           key={`${dateFrom ?? 'empty'}-${dateTo ?? 'empty'}`}
           appliedDateFrom={dateFrom}
           appliedDateTo={dateTo}
           onApply={updateDateRange}
         />
-        <p className="page__meta">
-          Матчей: <strong>{competitionMatchesQuery.data?.total ?? 0}</strong>
-        </p>
       </div>
 
       {competitionMatchesQuery.isLoading ? (
