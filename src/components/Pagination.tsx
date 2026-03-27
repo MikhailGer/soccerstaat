@@ -4,6 +4,38 @@ interface PaginationProps {
   onPageChange: (page: number) => void
 }
 
+type PaginationItem = number | 'ellipsis'
+
+function getPaginationItems(currentPage: number, totalPages: number): PaginationItem[] {
+  if (totalPages <= 6) {
+    return Array.from({ length: totalPages }, (_, index) => index + 1)
+  }
+
+  if (currentPage <= 4) {
+    return [1, 2, 3, 4, 5, 6, 'ellipsis']
+  }
+
+  if (currentPage >= totalPages - 3) {
+    return [
+      'ellipsis',
+      totalPages - 5,
+      totalPages - 4,
+      totalPages - 3,
+      totalPages - 2,
+      totalPages - 1,
+      totalPages,
+    ]
+  }
+
+  return [
+    'ellipsis',
+    currentPage - 1,
+    currentPage,
+    currentPage + 1,
+    'ellipsis',
+  ]
+}
+
 export function Pagination({
   currentPage,
   totalPages,
@@ -15,45 +47,53 @@ export function Pagination({
 
   return (
     <nav className="pagination" aria-label="Пагинация">
-      <button
-        type="button"
-        className="pagination__button"
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage === 1}
-      >
-        Назад
-      </button>
-
       <div className="pagination__pages">
-        {Array.from({ length: totalPages }, (_, index) => {
-          const page = index + 1
+        <button
+          type="button"
+          className="pagination__nav"
+          onClick={() => onPageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          aria-label="Предыдущая страница"
+        >
+          ‹
+        </button>
 
-          return (
+        {getPaginationItems(currentPage, totalPages).map((item, index) =>
+          item === 'ellipsis' ? (
+            <span
+              key={`ellipsis-${index}`}
+              className="pagination__ellipsis"
+              aria-hidden="true"
+            >
+              ...
+            </span>
+          ) : (
             <button
-              key={page}
+              key={item}
               type="button"
               className={
-                page === currentPage
-                  ? 'pagination__button pagination__button--active'
-                  : 'pagination__button'
+                item === currentPage
+                  ? 'pagination__page pagination__page--active'
+                  : 'pagination__page'
               }
-              onClick={() => onPageChange(page)}
-              aria-current={page === currentPage ? 'page' : undefined}
+              onClick={() => onPageChange(item)}
+              aria-current={item === currentPage ? 'page' : undefined}
             >
-              {page}
+              {item}
             </button>
-          )
-        })}
-      </div>
+          ),
+        )}
 
-      <button
-        type="button"
-        className="pagination__button"
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
-      >
-        Вперёд
-      </button>
+        <button
+          type="button"
+          className="pagination__nav"
+          onClick={() => onPageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          aria-label="Следующая страница"
+        >
+          ›
+        </button>
+      </div>
     </nav>
   )
 }

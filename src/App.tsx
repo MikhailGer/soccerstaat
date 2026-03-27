@@ -1,4 +1,4 @@
-import { Navigate, NavLink, Route, Routes } from 'react-router-dom'
+import { Link, Navigate, NavLink, Route, Routes } from 'react-router-dom'
 import { CompetitionMatchesPage } from './pages/CompetitionMatchesPage'
 import { CompetitionsPage } from './pages/CompetitionsPage'
 import { TeamMatchesPage } from './pages/TeamMatchesPage'
@@ -9,12 +9,9 @@ function App() {
   return (
     <div className="app-shell">
       <header className="topbar">
-        <div>
-          <p className="topbar__label">SoccerStat</p>
-          <p className="topbar__subtitle">
-            Статистика по лигам и командам в одном интерфейсе
-          </p>
-        </div>
+        <Link to="/competitions" className="topbar__brand" aria-label="На главную">
+          FIFA
+        </Link>
 
         <nav className="topbar__nav" aria-label="Основная навигация">
           <NavLink

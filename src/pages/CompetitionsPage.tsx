@@ -70,27 +70,16 @@ export function CompetitionsPage() {
   }
 
   return (
-    <section className="page">
-      <div className="page__header">
-        <span className="page__eyebrow">Раздел 1</span>
-        <h1>Лиги</h1>
-        <p>
-          Просматривай соревнования, фильтруй список по названию и переходи к
-          календарю выбранной лиги.
-        </p>
-      </div>
-
-      <div className="page__toolbar">
+    <section className="page page--catalog">
+      <div className="catalog-toolbar">
         <SearchField
+          className="search-field--catalog"
           label="Поиск по лигам"
-          placeholder="Например, Premier League"
+          placeholder="Search"
           value={searchValue}
           onChange={updateSearch}
+          hideLabel
         />
-
-        <p className="page__meta">
-          Найдено: <strong>{filteredCompetitions.length}</strong>
-        </p>
       </div>
 
       {competitionsQuery.isLoading ? (
@@ -120,14 +109,14 @@ export function CompetitionsPage() {
       !competitionsQuery.isError &&
       visibleCompetitions.length > 0 ? (
         <>
-          <div className="card-grid">
+          <div className="catalog-grid">
             {visibleCompetitions.map((competition) => (
               <Link
                 key={competition.id}
                 to={`/competitions/${competition.id}`}
-                className="card"
+                className="catalog-card"
               >
-                <div className="card__logo">
+                <div className="catalog-card__image">
                   {competition.emblem ? (
                     <img
                       src={competition.emblem}
@@ -135,13 +124,15 @@ export function CompetitionsPage() {
                       loading="lazy"
                     />
                   ) : (
-                    <span>{competition.code}</span>
+                    <span className="catalog-card__fallback">
+                      {competition.code || competition.name.slice(0, 3)}
+                    </span>
                   )}
                 </div>
 
-                <div className="card__body">
-                  <p className="card__title">{competition.name}</p>
-                  <p className="card__subtitle">{competition.area.name}</p>
+                <div className="catalog-card__body">
+                  <p className="catalog-card__title">{competition.name}</p>
+                  <p className="catalog-card__subtitle">{competition.area.name}</p>
                 </div>
               </Link>
             ))}

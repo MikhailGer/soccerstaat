@@ -4,21 +4,23 @@
     'Segoe UI', sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #14213d;
-  background:
-    radial-gradient(circle at top, rgba(79, 70, 229, 0.12), transparent 32%),
-    linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+  color: #000000;
+  background: #d8d8d8;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --color-text: #14213d;
-  --color-muted: #5c677d;
-  --color-border: rgba(20, 33, 61, 0.12);
-  --color-surface: rgba(255, 255, 255, 0.88);
-  --color-accent: #2563eb;
-  --color-tag-bg: rgba(37, 99, 235, 0.08);
+  --color-primary: #116acc;
+  --color-secondary: #090e53;
+  --color-page: #eff0f1;
+  --color-white: #ffffff;
+  --color-text: #000000;
+  --color-text-soft: rgba(0, 0, 0, 0.58);
+  --color-line-strong: rgba(17, 106, 204, 0.92);
+  --color-line-soft: rgba(0, 0, 0, 0.08);
+  --color-mono-35: rgba(0, 0, 0, 0.35);
+  --color-mono-50: rgba(0, 0, 0, 0.5);
 }
 
 * {
@@ -32,6 +34,7 @@ html {
 body {
   min-height: 100vh;
   margin: 0;
+  background: #d8d8d8;
 }
 
 body,
