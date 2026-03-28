@@ -1,0 +1,975 @@
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.app-shell {
+  width: 100%;
+  min-height: 100vh;
+  max-width: 1440px;
+  margin: 0 auto;
+  background: var(--color-page);
+}
+
+.topbar {
+  display: flex;
+  align-items: flex-end;
+  gap: 56px;
+  min-height: 103px;
+  padding: 22px 52px 0;
+  background: var(--color-white);
+}
+
+.topbar__brand {
+  flex: 0 0 auto;
+  text-decoration: none;
+}
+
+.topbar__brand img {
+  display: block;
+  width: 203px;
+  height: 77px;
+  object-fit: contain;
+}
+
+.topbar__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+
+.topbar__link {
+  position: relative;
+  padding: 0 0 17px;
+  border: 0;
+  background: transparent;
+  color: var(--color-text);
+  font-size: 25px;
+  font-weight: 300;
+  text-decoration: none;
+}
+
+.topbar__link::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  background: transparent;
+  transition: background-color 160ms ease;
+}
+
+.topbar__link--active::after {
+  background: var(--color-primary);
+}
+
+.content {
+  padding: 14px 52px 52px;
+}
+
+.page,
+.status-panel {
+  border-radius: 28px;
+  border: 1px solid var(--color-line-soft);
+  background: var(--color-white);
+}
+
+.page {
+  padding: 32px;
+  box-shadow: 0 18px 40px rgba(9, 14, 83, 0.04);
+}
+
+.page--catalog {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.page--calendar {
+  padding: 0 0 32px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.page__header {
+  max-width: 780px;
+}
+
+.page__header--compact {
+  margin-top: 16px;
+}
+
+.page__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(17, 106, 204, 0.08);
+  color: var(--color-primary);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.page h1 {
+  margin: 16px 0 12px;
+  color: var(--color-secondary);
+  font-size: clamp(2.8rem, 4vw, 4.4rem);
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+}
+
+.page p,
+.status-panel p {
+  margin: 0;
+  color: var(--color-text-soft);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.page__toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: end;
+  margin: 32px 0 24px;
+}
+
+.page__toolbar--stacked {
+  align-items: flex-start;
+}
+
+.page__toolbar--calendar {
+  align-items: flex-start;
+  margin: 56px 0 28px;
+}
+
+.page__meta {
+  white-space: nowrap;
+}
+
+.catalog-toolbar {
+  margin-bottom: 40px;
+}
+
+.search-field {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+}
+
+.search-field__label,
+.date-filter__field span {
+  color: var(--color-text);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.search-field__control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 8px 8px 8px 12px;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.98);
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
+}
+
+.search-field__control:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
+}
+
+.search-field__icon,
+.search-field__clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--color-mono-50);
+  flex: 0 0 auto;
+}
+
+.search-field__icon svg,
+.search-field__clear svg {
+  width: 18px;
+  height: 18px;
+}
+
+.search-field__input {
+  min-width: 0;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--color-text);
+}
+
+.search-field__input::placeholder {
+  color: var(--color-mono-50);
+}
+
+.search-field__input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.search-field__clear {
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.search-field--catalog .search-field__control {
+  width: 100%;
+  min-height: 48px;
+  gap: 14px;
+  padding: 12px 16px 12px 18px;
+  border-color: rgba(17, 106, 204, 0.86);
+}
+
+.search-field--catalog .search-field__icon,
+.search-field--catalog .search-field__clear {
+  width: 24px;
+  height: 24px;
+}
+
+.search-field--catalog .search-field__icon svg,
+.search-field--catalog .search-field__clear svg {
+  width: 22px;
+  height: 22px;
+}
+
+.search-field--catalog .search-field__input {
+  font-size: 1.05rem;
+}
+
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  padding-top: 16px;
+  color: var(--color-text);
+}
+
+.breadcrumbs__item {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.breadcrumbs__link,
+.breadcrumbs__current {
+  font-size: 0.95rem;
+}
+
+.breadcrumbs__link {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.breadcrumbs__separator {
+  color: var(--color-text);
+}
+
+.date-filter {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+}
+
+.date-filter__inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+
+.date-filter__field {
+  display: grid;
+  gap: 8px;
+}
+
+.date-filter__field--inline {
+  min-width: 252px;
+}
+
+.date-filter__inline-label,
+.date-filter__inline-separator {
+  color: var(--color-text);
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.date-filter__field input {
+  width: 100%;
+  min-height: 34px;
+  padding: 6px 34px 6px 10px;
+  border: 1px solid rgba(156, 163, 175, 1);
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.98);
+  color: var(--color-text);
+}
+
+.date-filter__field input:focus {
+  outline: 0;
+  border-color: var(--color-primary);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
+}
+
+.date-filter__hint {
+  font-size: 0.88rem;
+  color: var(--color-text-soft);
+}
+
+.action-button {
+  min-height: 40px;
+  padding: 10px 18px;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 999px;
+  background: var(--color-white);
+  color: var(--color-text);
+  cursor: pointer;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    border-color 160ms ease,
+    opacity 160ms ease;
+}
+
+.action-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.action-button--primary {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.action-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.catalog-grid,
+.card-grid,
+.card-grid--teams {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.catalog-card,
+.card {
+  color: inherit;
+  text-decoration: none;
+}
+
+.catalog-card {
+  display: flex;
+  min-height: 298px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 22px 18px 18px;
+  border-radius: 10px;
+  background: var(--color-white);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.catalog-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(9, 14, 83, 0.08);
+}
+
+.catalog-card__image {
+  display: flex;
+  width: 100%;
+  min-height: 180px;
+  align-items: center;
+  justify-content: center;
+}
+
+.catalog-card__image img {
+  max-width: 180px;
+  max-height: 160px;
+  object-fit: contain;
+}
+
+.catalog-card__image--team img {
+  max-width: 170px;
+  max-height: 170px;
+}
+
+.catalog-card__fallback {
+  color: var(--color-primary);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.catalog-card__body {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+  margin-top: auto;
+  text-align: center;
+}
+
+.catalog-card__title,
+.card__title,
+.match-team__name {
+  margin: 0;
+  color: var(--color-text);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.catalog-card__title {
+  font-size: 1rem;
+}
+
+.catalog-card__title--team {
+  font-weight: 600;
+}
+
+.catalog-card__subtitle,
+.card__subtitle {
+  margin: 0;
+  color: var(--color-text-soft);
+  font-size: 0.875rem;
+}
+
+.card {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 18px;
+  border: 1px solid var(--color-line-soft);
+  border-radius: 18px;
+  background: var(--color-white);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(17, 106, 204, 0.32);
+  box-shadow: 0 12px 24px rgba(9, 14, 83, 0.08);
+}
+
+.card__logo,
+.match-team__logo {
+  display: grid;
+  place-items: center;
+  flex: 0 0 64px;
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: var(--color-page);
+  overflow: hidden;
+}
+
+.card__logo img,
+.match-team__logo img {
+  max-width: 40px;
+  max-height: 40px;
+  object-fit: contain;
+}
+
+.card__logo span,
+.match-team__logo span {
+  color: var(--color-primary);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.card__body {
+  min-width: 0;
+}
+
+.matches-table {
+  overflow: hidden;
+  border: 1px solid rgba(156, 163, 175, 0.9);
+  background: var(--color-white);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.matches-table__row {
+  display: grid;
+  grid-template-columns: 128px 96px 122px minmax(260px, 1fr) 170px;
+  gap: 14px;
+  align-items: center;
+  min-height: 69px;
+  padding: 0 18px;
+  border-bottom: 1px solid rgba(156, 163, 175, 0.9);
+  color: var(--color-text);
+  font-size: 1rem;
+}
+
+.matches-table__row:last-child {
+  border-bottom: 0;
+}
+
+.matches-table__row--head {
+  font-weight: 400;
+}
+
+.matches-table__teams {
+  min-width: 0;
+}
+
+.matches-table__score {
+  justify-self: end;
+  white-space: nowrap;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.pagination__pages {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.pagination__nav,
+.pagination__page {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-mono-35);
+  cursor: pointer;
+  font-size: 1rem;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.pagination__page--active {
+  border-radius: 8px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  box-shadow: 0 10px 18px rgba(17, 106, 204, 0.22);
+}
+
+.pagination__nav:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination__ellipsis {
+  color: var(--color-mono-35);
+}
+
+.status-panel {
+  margin-top: 0;
+  padding: 24px;
+  box-shadow: 0 12px 24px rgba(9, 14, 83, 0.04);
+}
+
+.status-panel h2 {
+  margin: 0 0 10px;
+  color: var(--color-secondary);
+  font-size: 1.4rem;
+}
+
+@media (max-width: 1200px) {
+  .topbar {
+    gap: 36px;
+    padding: 18px 36px 0;
+  }
+
+  .topbar__brand img {
+    width: 186px;
+    height: auto;
+  }
+
+  .topbar__nav {
+    gap: 24px;
+  }
+
+  .topbar__link {
+    font-size: 23px;
+  }
+
+  .content {
+    padding: 14px 36px 40px;
+  }
+
+  .catalog-grid,
+  .card-grid,
+  .card-grid--teams {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1024px) {
+  .topbar {
+    gap: 28px;
+    padding-right: 28px;
+    padding-left: 28px;
+  }
+
+  .topbar__brand img {
+    width: 176px;
+  }
+
+  .topbar__link {
+    font-size: 21px;
+  }
+
+  .content {
+    padding: 12px 28px 32px;
+  }
+
+  .matches-table {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .matches-table__row {
+    min-width: 860px;
+  }
+}
+
+@media (max-width: 820px) {
+  .topbar {
+    gap: 24px;
+    min-height: 94px;
+    padding: 16px 24px 0;
+  }
+
+  .topbar__brand img {
+    width: 164px;
+  }
+
+  .topbar__nav {
+    gap: 18px;
+  }
+
+  .topbar__link {
+    padding-bottom: 14px;
+    font-size: 18px;
+  }
+
+  .content {
+    padding: 10px 24px 28px;
+  }
+
+  .catalog-toolbar {
+    margin-bottom: 28px;
+  }
+
+  .search-field--catalog .search-field__control {
+    min-height: 44px;
+    padding: 10px 14px 10px 16px;
+  }
+
+  .catalog-grid,
+  .card-grid,
+  .card-grid--teams {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .catalog-card {
+    min-height: 272px;
+    padding: 18px 14px 16px;
+  }
+
+  .catalog-card__image {
+    min-height: 160px;
+  }
+
+  .catalog-card__image img {
+    max-width: 150px;
+    max-height: 138px;
+  }
+
+  .catalog-card__image--team img {
+    max-width: 144px;
+    max-height: 144px;
+  }
+
+  .matches-table__row {
+    min-width: 760px;
+    grid-template-columns: 112px 88px 116px minmax(220px, 1fr) 150px;
+    font-size: 0.94rem;
+  }
+
+  .page__toolbar--calendar {
+    margin-top: 36px;
+  }
+
+  .date-filter__inline {
+    gap: 12px;
+  }
+
+  .date-filter__field--inline {
+    min-width: 220px;
+  }
+
+  .pagination {
+    margin-top: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .topbar {
+    align-items: flex-start;
+    gap: 16px;
+    padding-top: 18px;
+  }
+
+  .topbar__link {
+    padding-bottom: 12px;
+    font-size: 1.15rem;
+  }
+
+  .topbar__brand img {
+    width: 160px;
+    height: auto;
+  }
+
+  .content {
+    padding: 20px 16px 32px;
+  }
+
+  .page {
+    padding: 20px;
+    border-radius: 22px;
+  }
+
+  .page--catalog {
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .page__toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .page__meta {
+    white-space: normal;
+  }
+
+  .catalog-toolbar {
+    margin-bottom: 20px;
+  }
+
+  .catalog-grid,
+  .card-grid,
+  .card-grid--teams {
+    grid-template-columns: 1fr;
+  }
+
+  .date-filter__inline {
+    gap: 10px;
+  }
+
+  .date-filter__field--inline {
+    min-width: 100%;
+  }
+
+  .catalog-card {
+    min-height: 260px;
+  }
+
+  .matches-table__row {
+    min-width: 700px;
+  }
+
+  .pagination__pages {
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .app-shell {
+    max-width: none;
+  }
+
+  .topbar {
+    gap: 12px;
+    min-height: auto;
+    padding: 14px 16px 0;
+  }
+
+  .topbar__brand img {
+    width: 132px;
+  }
+
+  .topbar__nav {
+    gap: 16px;
+  }
+
+  .topbar__link {
+    padding-bottom: 10px;
+    font-size: 15px;
+  }
+
+  .topbar__link::after {
+    height: 3px;
+  }
+
+  .content {
+    padding: 8px 16px 24px;
+  }
+
+  .search-field--catalog .search-field__control {
+    min-height: 42px;
+    gap: 12px;
+    padding: 10px 12px 10px 14px;
+  }
+
+  .search-field--catalog .search-field__icon,
+  .search-field--catalog .search-field__clear {
+    width: 20px;
+    height: 20px;
+  }
+
+  .search-field--catalog .search-field__icon svg,
+  .search-field--catalog .search-field__clear svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .search-field--catalog .search-field__input {
+    font-size: 1rem;
+  }
+
+  .catalog-card {
+    min-height: 238px;
+    padding: 16px 12px 14px;
+  }
+
+  .catalog-card__image {
+    min-height: 144px;
+  }
+
+  .catalog-card__image img {
+    max-width: 136px;
+    max-height: 124px;
+  }
+
+  .catalog-card__image--team img {
+    max-width: 132px;
+    max-height: 132px;
+  }
+
+  .catalog-card__title {
+    font-size: 0.96rem;
+  }
+
+  .catalog-card__subtitle {
+    font-size: 0.82rem;
+  }
+
+  .page--calendar {
+    padding-bottom: 20px;
+  }
+
+  .breadcrumbs {
+    padding-top: 10px;
+  }
+
+  .breadcrumbs__link,
+  .breadcrumbs__current,
+  .breadcrumbs__separator {
+    font-size: 0.86rem;
+  }
+
+  .page__toolbar--calendar {
+    margin: 24px 0 18px;
+  }
+
+  .date-filter__inline {
+    display: grid;
+    gap: 10px;
+  }
+
+  .date-filter__inline-label,
+  .date-filter__inline-separator {
+    font-size: 0.92rem;
+  }
+
+  .date-filter__field--inline {
+    min-width: 100%;
+  }
+
+  .date-filter__field input {
+    min-height: 40px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .date-filter__hint {
+    font-size: 0.82rem;
+  }
+
+  .matches-table {
+    margin-right: -4px;
+  }
+
+  .matches-table__row {
+    min-width: 660px;
+    gap: 10px;
+    padding: 0 12px;
+    font-size: 0.9rem;
+  }
+
+  .pagination {
+    margin-top: 20px;
+  }
+
+  .pagination__pages {
+    gap: 8px;
+  }
+
+  .pagination__nav,
+  .pagination__page {
+    min-width: 34px;
+    height: 34px;
+    font-size: 0.92rem;
+  }
+}
